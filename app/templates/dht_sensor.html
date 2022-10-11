@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('.static', filename='dht.css')}}">
+{% endblock %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-6">
+        <h3>DHT 11 Sensor</h3>
+        <p>No. of records: 
+            {{ datacount }}
+        </p>
+      </div>
+      <div class="col-6">
+        <img src='https://i2.wp.com/www.esp32learning.com/wp-content/uploads/2017/11/dht11-module.jpg?fit=644%2C485'/>
+      </div>
+    </div>
+</div>
+
+
+<div class="container table-responsive py-5"> 
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Sr.</th>
+          <th scope="col">Humidity</th>
+          <th scope="col">Temperature (C)</th>
+          <th scope="col">Heat Index (C)</th>
+          <th scope="col">Time Stamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in dhtdata %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ row.humidity }}</td>
+          <td>{{ row.temperature }}</td>
+          <td>{{ row.heat_index }}</td>
+          <td>{{ row.date_time }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% if prev_url %}
+    <a href="{{ prev_url }}">Previous Post</a>
+    {% endif %}
+    {% if next_url %}
+    <a href="{{ next_url }}">Next Post</a>
+    {% endif %}
+
+    </div>
+
+{% endblock %}

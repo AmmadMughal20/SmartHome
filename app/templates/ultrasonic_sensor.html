@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('.static', filename='ultrasonic.css')}}">
+{% endblock %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-6">
+        <h3>Ultrasonic Sensor</h3>
+        <p>No. of records: 
+            {{ datacount }}
+        </p>
+      </div>
+      <div class="col-6">
+        <img src='https://hallroad.org/images/thumbnails/800/800/detailed/8/HC_SR04_HC-SR04_Ultrasonic_Sensor_In_Pakistan.jpg'/>
+      </div>
+    </div>
+</div>
+
+
+<div class="container table-responsive py-5"> 
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Sr.</th>
+          <th scope="col">Distance (Inches)</th>
+          <th scope="col">Time Stamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in ultrasonicdata %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ row.distance }}</td>
+          <td>{{ row.date_time }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% if prev_url %}
+    <a href="{{ prev_url }}">Previous Readings</a>
+    {% endif %}
+    {% if next_url %}
+    <a href="{{ next_url }}">Next Readings</a>
+    {% endif %}
+
+    </div>
+
+{% endblock %}

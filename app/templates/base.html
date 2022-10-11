@@ -1,0 +1,43 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+    {% if title %}{{ title }} - V0.1{% else %}Welcome - Ammad's Smart Home{% endif %}
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('.static', filename='mystyle.css')}}">
+{% endblock %} 
+
+{% block navbar %}
+<nav class="navbar navbar-expand-md navbar-dark bg-primary ">
+    <a class="navbar-brand abs" href="#">Sensor Data</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapsingNavbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+
+        <div class="collapse navbar-collapse" id="collapsingNavbar">
+            <ul class="nav navbar-nav ml-auto ">
+                <li><a href="{{ url_for('index') }}">DHT11</a></li>
+                <li><a href="{{ url_for('ultrasonic') }}">Ultrasonic</a></li>
+            </ul>
+        </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+
+    {# application content needs to be provided in the app_content block #}
+    {% block app_content %}{% endblock %}
+        
+{% endblock %}
+
+{% block scripts %}
+<script src="{{url_for('.static', filename='myscripts.js')}}"></script>
+{{super()}}
+{% endblock %}
+
+</html>
