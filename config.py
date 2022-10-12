@@ -4,7 +4,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     # ...
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'postgresql://postgres:admin123@localhost/SensorData'
+        'postgresql://postgres:admin123@192.168.10.15/SensorData'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     TESTING = False
